@@ -18,7 +18,7 @@ npm run build
 
 建议单独 GitHub 仓库，上传本目录内容。Cloudflare Pages：框架 None，构建命令 `npm run build`，输出目录 `dist`。同仓库部署时根目录设为 `marginmade`。Workers 静态资源目录同样为 `dist`，使用控制台提供的静态资源部署配置。
 
-生产环境设置 `SITE_URL=https://实际域名`（不要路径），构建生成该域名的 canonical、og:url、sitemap 和 robots sitemap 地址。未设置不编造域名。
+当前正式域名为 `https://marginmade.luqihang594241.workers.dev/`，记录在 `package.json` 的 `homepage` 中。构建默认使用此域名生成 canonical、og:url、sitemap.xml 和带 Sitemap 声明的 robots.txt；遗漏 `SITE_URL` 也会生成文件。改域名时设置构建环境变量 `SITE_URL=https://新的正式域名`（不含子路径）后重新构建发布，变量优先于 `homepage`。源码根目录也已提供当前域名的 `sitemap.xml` 和 `robots.txt`，支持直接发布；直接发布源码且更换域名时需同步更新两文件和 `homepage`。
 
 ## 广告与统计
 
@@ -33,3 +33,7 @@ npm run build
 Configurable handmade-seller costs, labor, shipping, example percentage/fixed fees, discounts, single-item order profit and target-margin pricing. No official live marketplace fee feed, tax advice, VAT-inclusive pricing or multi-item order modeling.
 
 没有验证关键词的真实搜索量、竞争度或收益，不承诺收录、排名或 AI 引用。英文静态页面提供公式、使用说明、限制、FAQ、隐私与条款。
+
+## 搜索引擎站点地图检查
+
+更新 GitHub 并等待 Cloudflare 部署成功后，打开 https://marginmade.luqihang594241.workers.dev/sitemap.xml ，应显示 XML 网址列表，不能是首页或 404。然后在对应 Google Search Console 网站属性的 Sitemaps 中提交 `sitemap.xml`，检查状态是否为 Success；也可向 Bing Webmaster Tools 提交同一地址。提交成功提示仅代表接受请求，成功读取也不保证收录、排名或流量。
